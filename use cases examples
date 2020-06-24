@@ -1,0 +1,22 @@
+<?php
+/**
+ * WP-SITEMAPS USE CASES EXAMPLES
+ *
+ * Some personal findings while experimenting the wp-sitemaps plugin. Hope this helps!
+ */
+ 
+/**
+ * Filter out all administrator users.
+ *
+ * @var array     $query_args Arguments filter.
+ * @link          https://codex.wordpress.org/Class_Reference/WP_User_Query
+ *
+ * @author        Guy Dumais
+ * @link          https://github.com/guydumais
+ */
+add_filter( 'wp_sitemaps_users_query_args', [ $this, 'filter_users_admin' ], 10, 1 );
+function filter_users_admin( $query_args ) {
+  $query_args['role__not_in'] = 'Administrator';
+  return $query_args;
+}
+?>
